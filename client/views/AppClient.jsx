@@ -1,8 +1,8 @@
 import React from 'react'
 import HeaderBar from './layout/header-bar'
-import Routes from '../config/router'
+import RouterClient from '../config/routerClient'
 
-export default class App extends React.Component {
+export default class AppClient extends React.Component {
   componentDidMount() {
     // do something here
   }
@@ -10,7 +10,7 @@ export default class App extends React.Component {
   render() {
     return [
       <HeaderBar key="headerbar" />,
-      <Routes key="routes" />,
+      <RouterClient key="routes" />,
     ]
   }
 }

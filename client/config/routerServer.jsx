@@ -13,7 +13,6 @@ import TestApi from '../views/test/api-test'
 import Info from '../views/user/info'
 import CreateTopic from '../views/create-topic/index'
 
-
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
   <Route
     {...rest}
