@@ -1,5 +1,6 @@
 const express = require('express')
 const favicon = require('serve-favicon')
+const compression = require('compression')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const serverRender = require('./util/server-render')
@@ -9,7 +10,7 @@ const path = require('path')
 const isDev = process.env.NODE_ENV === 'development'
 
 const app = express()
-
+app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
