@@ -1,0 +1,5 @@
+apps:
+  - script: /server/server.js
+    name: znode
+    env_production:
+      NODE_ENV: production
