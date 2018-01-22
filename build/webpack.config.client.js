@@ -3,15 +3,16 @@ const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const baseConfig = require('./webpack.base')
 const HTMLPlugin = require('html-webpack-plugin')
+// const NameAllMoudlesPlugin = require('name-all-modules-plugin')
 const HtmlInLinkChunkPlugin = require('html-webpack-inline-chunk-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
 const config = webpackMerge(baseConfig, {
   entry: {
-    app: path.join(__dirname, '../client/app.js'),
+    app: path.join(__dirname, '../client/app.js')
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].[hash].js'
   },
   plugins: [
     new HTMLPlugin({
@@ -66,6 +67,7 @@ if (isDev) {
     ]
   }
   config.output.filename = '[name].[chunkhash].js'
+  config.output.chunkFilename = '[chunkhash].js'
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -78,6 +80,7 @@ if (isDev) {
     new HtmlInLinkChunkPlugin({
       inlineChunks: ['manifest']
     }),
+    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
