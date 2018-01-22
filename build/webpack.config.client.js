@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 const baseConfig = require('./webpack.base')
 const HTMLPlugin = require('html-webpack-plugin')
-
+const HtmlInLinkChunkPlugin = require('html-webpack-inline-chunk-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
 const config = webpackMerge(baseConfig, {
@@ -74,6 +74,9 @@ if (isDev) {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
+    }),
+    new HtmlInLinkChunkPlugin({
+      inlineChunks: ['manifest']
     }),
     new webpack.DefinePlugin({
       'process.env': {
