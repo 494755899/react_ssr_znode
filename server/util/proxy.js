@@ -1,7 +1,7 @@
 const axios = require('axios')
 const querystring = require('query-string')
 
-const baseUrl = 'http://127.0.0.1:8000'
+const baseUrl = 'http://39.108.49.237/v1'
 
 module.exports = function (req, res, next) {
   const path = req.path
