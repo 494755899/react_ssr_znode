@@ -1,7 +1,7 @@
 const axios = require('axios')
 const querystring = require('query-string')
 
-const baseUrl = 'http://cnodejs.org/api/v1'
+const baseUrl = 'http://127.0.0.1:8000'
 
 module.exports = function (req, res, next) {
   const path = req.path
@@ -19,18 +19,18 @@ module.exports = function (req, res, next) {
     accesstoken: (needAccessToken && req.method === 'GET') ? user.accessToken : ''
   })
   if (query.needAccessToken) delete query.needAccessToken
-
+  console.log(`${baseUrl}${path}`)
   axios(`${baseUrl}${path}`, {
     method: req.method,
     params: query,
     data: querystring.stringify(Object.assign({}, req.body, {
       accesstoken: (needAccessToken && req.method === 'POST') ? user.accessToken : ''
-    })),
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
+    }))
+    // headers: {
+    //   'Content-Type': 'application/x-www-form-urlencoded'
+    // }
   }).then(resp => {
-    if (resp.status === 200) {
+    if (resp.status === 200 && resp.success) {
       res.send(resp.data)
     } else {
       res.status(resp.status).send(resp.data)

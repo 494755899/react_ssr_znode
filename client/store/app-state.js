@@ -20,10 +20,11 @@ export default class AppState {
     this.collections = collections
   }
 
-  @action login(accessToken) {
+  @action login(userName, passWord) {
     return new Promise((resolve, reject) => {
-      post('user/login', {}, {
-        accessToken,
+      post('users/signIn', {}, {
+        userName,
+        passWord,
       }).then((resp) => {
         if (resp.success) {
           this.info = resp.data

@@ -115,9 +115,10 @@ class TopicStore {
     })
   }
 
+  // needAccessToken: true 后面要加
   @action createNewTopic(title, tab, content) {
     return new Promise((resolve, reject) => {
-      post('/topics', { needAccessToken: true }, { title, tab, content }).then((result) => {
+      post('topics/createTopic', { }, { title, tab, content }).then((result) => {
         if (result.success) {
           const topic = new Topic(createTopic({
             title,

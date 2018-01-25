@@ -12,6 +12,7 @@ import Login from '../views/user/login'
 import TestApi from '../views/test/api-test'
 import Info from '../views/user/info'
 import CreateTopic from '../views/create-topic/index'
+import Register from '../views/user/register'
 
 const PrivateRoute = ({ isLogin, component: Component, ...rest }) => (
   <Route
@@ -48,6 +49,7 @@ export default () => [
   <Route path="/list" component={TopicList} key="list" />,
   <Route path="/detail/:id" component={TopicDetail} key="detail" />,
   <Route path="/user/login" component={Login} key="login" />,
+  <Route path="/user/register" component={Register} key="register" />,
   <InjectPrivateRoute path="/user/info" component={Info} key="info" />,
   <InjectPrivateRoute path="/createtopic" component={CreateTopic} key="createtopic" />,
   <Route path="/test" component={TestApi} key="test" />,

@@ -24,7 +24,7 @@ class CreateTopic extends React.Component {
     super(props)
     this.state = {
       topic: '',
-      value: 'dev',
+      tab: 'dev',
       title: '',
     }
   }
@@ -33,9 +33,9 @@ class CreateTopic extends React.Component {
   }
 
   createTopicHandler = () => {
-    const { topic, value, title } = this.state
-    this.props.topicStore.createNewTopic(title, value, topic).then(() => {
-      this.context.router.history.replace(`/list?tab=${value}`)
+    const { topic, tab, title } = this.state
+    this.props.topicStore.createNewTopic(title, tab, topic).then(() => {
+      this.context.router.history.replace(`/list?tab=${tab}`)
     })
   }
 
@@ -53,7 +53,7 @@ class CreateTopic extends React.Component {
 
   typeChange = (e) => {
     this.setState({
-      value: e.target.value,
+      tab: e.target.value,
     });
   }
 
@@ -69,11 +69,11 @@ class CreateTopic extends React.Component {
           <TextArea
             rows={15}
             onChange={this.handleNewTopicChange}
-            value={this.state.newReply}
+            value={this.state.topic}
             placeholder="...写内容"
           />
           <div>
-            <RadioGroup onChange={this.typeChange} value={this.state.value}>
+            <RadioGroup onChange={this.typeChange} value={this.state.tab}>
               {Object.keys(tabs).map(v => (<Radio key={v} value={v} >{tabs[v]}</Radio>))}
             </RadioGroup>
             <Button type="primary" onClick={this.createTopicHandler}>发布话题</Button>

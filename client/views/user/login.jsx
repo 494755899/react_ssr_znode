@@ -25,13 +25,14 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      accessToken: '',
+      userName: '',
+      passWord: '',
     }
   }
 
-  changeAccessToken = (e) => {
+  changeState = (e, flag) => {
     this.setState({
-      accessToken: e.target.value,
+      [flag]: e.target.value,
     })
   }
 
@@ -42,7 +43,9 @@ class Login extends React.Component {
   }
 
   login = () => {
-    this.props.appState.login(this.state.accessToken).then((result) => {
+    const { userName, passWord } = this.state
+    this.props.appState.login(userName, passWord).then((result) => {
+      console.log(result)
       if (!result.success) {
         message.error(result.data.error_msg)
       }
@@ -64,9 +67,17 @@ class Login extends React.Component {
           </Helmet>
           <div>
             <Input
-              placeholder="请输入accessToken"
-              value={this.state.accessToken}
-              onChange={this.changeAccessToken}
+              placeholder="请输入用户名"
+              value={this.state.userName}
+              onChange={e => this.changeState(e, 'userName')}
+              style={{ width: 300 }}
+            />
+          </div>
+          <div>
+            <Input
+              placeholder="请输入密码"
+              value={this.state.passWord}
+              onChange={e => this.changeState(e, 'passWord')}
               style={{ width: 300 }}
             />
           </div>

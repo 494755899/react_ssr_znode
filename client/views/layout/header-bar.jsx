@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from 'antd/lib/button'
 import { observer, inject } from 'mobx-react'
+import { Link } from 'react-router-dom'
 
 @inject((stores) => {
   return {
@@ -49,6 +50,7 @@ class HeaderBar extends React.Component {
               <span onClick={this.handlerLogin}>
                 {isLogin ? info.loginname : <span>登录</span>}
               </span>
+              <Link to="/user/register">注册</Link>
             </div>
           </div>
         </div>
